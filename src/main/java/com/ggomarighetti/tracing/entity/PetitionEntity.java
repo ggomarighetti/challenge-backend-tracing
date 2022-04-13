@@ -21,6 +21,9 @@ public class PetitionEntity {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
+    @Column(nullable = false)
+    private Double distance;
+
     @CreationTimestamp
     @Column(name = "created_at")
     private LocalDateTime createdAt;
