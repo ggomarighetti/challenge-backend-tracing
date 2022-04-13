@@ -42,8 +42,8 @@ public class CountryEntity {
     @Column(nullable = false)
     private Double longitude;
 
-    @Column(nullable = false)
-    private String currency;
+    @ElementCollection
+    private List<String> currency;
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PetitionEntity> requests;
