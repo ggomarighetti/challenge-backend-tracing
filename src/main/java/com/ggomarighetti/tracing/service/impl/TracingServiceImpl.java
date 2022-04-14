@@ -6,6 +6,7 @@ import com.ggomarighetti.tracing.client.tracing.TracingClient;
 import com.ggomarighetti.tracing.client.tracing.domain.TracingResponse;
 import com.ggomarighetti.tracing.dto.TracingResponseDto;
 import com.ggomarighetti.tracing.entity.CountryEntity;
+import com.ggomarighetti.tracing.entity.PetitionEntity;
 import com.ggomarighetti.tracing.mapper.CountryMapper;
 import com.ggomarighetti.tracing.mapper.CurrencyMapper;
 import com.ggomarighetti.tracing.mapper.TimezoneMapper;
@@ -67,6 +68,13 @@ public class TracingServiceImpl implements TracingService {
                 .distance(distanceUtil.distanceBetween(countryEntity.getLatitude(), countryEntity.getLongitude(), -34.0, -64.0))
                 .currencies(currencyMapper.currencyListToCurrencyMap(countryEntity.getCurrency()))
                 .build();
+
+            PetitionEntity petitionEntity = PetitionEntity.builder()
+                    .distance(tracingResponseDto.getDistance())
+                    .country(CountryEntity.builder().id(countryEntity.getId()).build())
+                    .build();
+
+            petitionRepository.save(petitionEntity);
 
         return tracingResponseDto;
     }
