@@ -2,6 +2,7 @@ package com.ggomarighetti.tracing.mapper;
 
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,10 @@ public class TimezoneMapper {
         Map<String, String> timezonesMap = new HashMap<>();
 
         for (String timezone : timezones){
-            timezonesMap.put(timezone, TimeZone.getTimeZone(timezone).toString());
+
+            TimeZone tz = TimeZone.getDefault();
+            tz.setID(timezone);
+            timezonesMap.put(timezone, LocalDateTime.now(tz.toZoneId()).toString());
         }
 
         return timezonesMap;
