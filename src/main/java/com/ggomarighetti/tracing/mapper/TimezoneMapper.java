@@ -11,8 +11,8 @@ import java.util.TimeZone;
 @Component
 public class TimezoneMapper {
 
+    //Help method to obtain the time and names of each time zone and group them in a map.
     public Map<String, String> timezonesListToTimezonesMap(List<String> timezones){
-
         Map<String, String> timezonesMap = new HashMap<>();
 
         for (String timezone : timezones){

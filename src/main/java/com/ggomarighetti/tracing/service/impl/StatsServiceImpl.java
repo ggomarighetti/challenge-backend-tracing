@@ -17,6 +17,7 @@ public class StatsServiceImpl implements StatsService {
     private PetitionRepository petitionRepository;
 
     @Override
+    //Method to obtain all records and calculate the longest distance, the shortest distance and an average of all requests.
     public StatsResponseDto getStats() {
 
         List<PetitionEntity> petitionsList = petitionRepository.findAll(Sort.by(Sort.Order.desc("distance")));

@@ -15,8 +15,8 @@ public class CurrencyMapper {
     @Autowired
     private CurrencyClient currencyClient;
 
+    // Help method to obtain the price and code of each currency and group them in a map.
     public Map<String, BigDecimal> currencyListToCurrencyMap(List<String> currencyList) {
-
         Map<String, BigDecimal> currencyMap = new HashMap<>();
 
         for (String currency : currencyList) {

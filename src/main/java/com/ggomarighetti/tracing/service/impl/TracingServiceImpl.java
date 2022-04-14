@@ -45,9 +45,12 @@ public class TracingServiceImpl implements TracingService {
     private TimezoneMapper timezoneMapper;
 
     @Autowired
-    CurrencyMapper currencyMapper;
+    private CurrencyMapper currencyMapper;
 
     @Override
+    // Method to call the external apis and from the ip address to obtain the ISO code of the country to which it
+    // corresponds and then get all the details, utilities are used to calculate the current time in each time zone
+    // and the current exchange rate of the currency against the U.S. dollar.
     public TracingResponseDto traceIpAddress(String ipAddress) {
 
         TracingResponse tracingResponse = tracingClient.findByIpAddress(ipAddress);

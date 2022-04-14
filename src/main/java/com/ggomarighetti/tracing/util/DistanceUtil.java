@@ -7,6 +7,7 @@ public class DistanceUtil {
 
     private static final double earthRadius = 6371.01;
 
+    // Java implementation of the mathematical formula to calculate the distance in kilometers between two coordinate points.
     public double distanceBetween(double latitudeA, double longitudeA, double latitudeB, double longitudeB) {
         latitudeA = Math.toRadians(latitudeA);
         longitudeA = Math.toRadians(longitudeA);
