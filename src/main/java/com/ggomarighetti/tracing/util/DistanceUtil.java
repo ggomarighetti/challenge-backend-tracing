@@ -5,20 +5,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DistanceUtil {
 
-    public Double distanceBetween(Double aLatitude, Double aLongitude, Double bLatitude, Double bLongitude) {
+    private static final double earthRadius = 6371.01;
 
-        double theta = aLongitude - bLongitude;
-        double distance = Math.sin(degToRad(aLatitude)) * Math.sin(degToRad(bLatitude))
-                + Math.cos(degToRad(aLatitude)) * Math.cos(degToRad(bLatitude)) * Math.cos(degToRad(theta));
+    public double distanceBetween(double latitudeA, double longitudeA, double latitudeB, double longitudeB) {
+        latitudeA = Math.toRadians(latitudeA);
+        longitudeA = Math.toRadians(longitudeA);
+        latitudeB = Math.toRadians(latitudeB);
+        longitudeB = Math.toRadians(longitudeB);
 
-        return radToDeg(Math.cos(distance)) * 60 * 1.1515 * 1.609344;
-    }
-
-    private Double degToRad(Double deg) {
-        return (deg * Math.PI / 180.0);
-    }
-
-    private double radToDeg(Double rad) {
-        return (rad * 180.0 / Math.PI);
+        return earthRadius * Math.acos(Math.sin(latitudeA) * Math.sin(latitudeB) + Math.cos(latitudeA) * Math.cos(latitudeB) * Math.cos(longitudeA - longitudeB));
     }
 }
