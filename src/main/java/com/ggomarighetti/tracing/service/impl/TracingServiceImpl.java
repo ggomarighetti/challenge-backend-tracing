@@ -54,12 +54,13 @@ public class TracingServiceImpl implements TracingService {
     public TracingResponseDto traceIpAddress(String ipAddress) {
 
         TracingResponse tracingResponse = tracingClient.findByIpAddress(ipAddress);
-        GeolocationResponse geolocationResponse = geolocationClient.findbyCountryCode(tracingResponse.getCountryCode());
 
-        CountryEntity countryEntity = countryRepository.findByName(geolocationResponse.getName().getCommon()).orElse(null);
+        CountryEntity countryEntity = countryRepository.findByName(tracingResponse.getCountryCode()).orElse(null);
 
+        // If the country is not registered in the database by its ISO code, we get it from the external api rest.
         if (countryEntity == null) {
 
+            GeolocationResponse geolocationResponse = geolocationClient.findbyCountryCode(tracingResponse.getCountryCode());
             countryEntity = countryMapper.geolocationResponseToCountryEntity(geolocationResponse);
             countryEntity = countryRepository.save(countryEntity);
         }
@@ -72,12 +73,12 @@ public class TracingServiceImpl implements TracingService {
                 .currencies(currencyMapper.currencyListToCurrencyMap(countryEntity.getCurrency()))
                 .build();
 
-            PetitionEntity petitionEntity = PetitionEntity.builder()
-                    .distance(tracingResponseDto.getDistance())
-                    .country(CountryEntity.builder().id(countryEntity.getId()).build())
-                    .build();
+        PetitionEntity petitionEntity = PetitionEntity.builder()
+                .distance(tracingResponseDto.getDistance())
+                .country(CountryEntity.builder().id(countryEntity.getId()).build())
+                .build();
 
-            petitionRepository.save(petitionEntity);
+        petitionRepository.save(petitionEntity);
 
         return tracingResponseDto;
     }

@@ -30,6 +30,9 @@ public class CountryEntity {
     @Column(nullable = false, unique = true)
     private String name;
 
+    @Column(nullable = false, unique = true)
+    private String code;
+
     @ElementCollection
     private List<String> languages;
 
