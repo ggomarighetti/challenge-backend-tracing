@@ -61,7 +61,7 @@ public class TracingServiceImpl implements TracingService {
         if (countryEntity == null) {
 
             GeolocationResponse geolocationResponse = geolocationClient.findbyCountryCode(tracingResponse.getCountryCode());
-            countryEntity = countryMapper.geolocationResponseToCountryEntity(geolocationResponse);
+            countryEntity = countryMapper.geolocationResponseToCountryEntity(geolocationResponse, tracingResponse.getCountryCode());
             countryEntity = countryRepository.save(countryEntity);
         }
 

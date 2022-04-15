@@ -10,9 +10,10 @@ import java.util.stream.Collectors;
 public class CountryMapper {
 
     // Help method to pass the details of a country to a project entity.
-    public CountryEntity geolocationResponseToCountryEntity(GeolocationResponse geolocationResponse){
+    public CountryEntity geolocationResponseToCountryEntity(GeolocationResponse geolocationResponse, String code){
         return CountryEntity.builder()
                 .name(geolocationResponse.getName().getCommon())
+                .code(code)
                 .languages(geolocationResponse.getLanguages().values().stream().collect(Collectors.toList()))
                 .timezones(geolocationResponse.getTimezones())
                 .latitude(geolocationResponse.getLatlng().get(0))
