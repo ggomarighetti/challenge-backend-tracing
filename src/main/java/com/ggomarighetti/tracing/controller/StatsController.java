@@ -17,7 +17,7 @@ public class StatsController {
     @Autowired
     private StatsService statsService;
 
-    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Gets the stadistics of ip address tracing")
     @ApiResponse(responseCode = "200")
 

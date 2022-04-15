@@ -19,7 +19,7 @@ public class TracingController {
     @Autowired
     private TracingService tracingService;
 
-    @GetMapping(value = "/{ipAddress}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{ipAddress}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Trace the data of an ip address")
     @ApiResponse(responseCode = "200")
     public TracingResponseDto traceIpAddress(@PathVariable String ipAddress) {
