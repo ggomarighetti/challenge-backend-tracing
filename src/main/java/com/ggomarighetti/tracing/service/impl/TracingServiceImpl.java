@@ -66,6 +66,7 @@ public class TracingServiceImpl implements TracingService {
         }
 
         TracingResponseDto tracingResponseDto = TracingResponseDto.builder()
+                .ipAddress(ipAddress)
                 .countryName(countryEntity.getName())
                 .countryCode(tracingResponse.getCountryCode())
                 .timezones(timezoneMapper.timezonesListToTimezonesMap(countryEntity.getTimezones()))

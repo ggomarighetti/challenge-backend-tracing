@@ -13,6 +13,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TracingResponseDto {
+    private String ipAddress;
     private String countryName;
     private String countryCode;
     private Map<String, String> timezones;
